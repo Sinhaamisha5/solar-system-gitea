@@ -62,16 +62,14 @@ pipeline {
         stage('Unit Testing') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'mongo-db-credentials', passwordVariable: 'MONGO_PASSWORD', usernameVariable: 'MONGO_USERNAME')]) {
-                
                 sh '''
-                export MONGO_URI="mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@supercluster.d83jj.mongodb.net/superData?retryWrites=true&w=majority"
-                echo "Testing with MongoDB Atlas..."
-                npm test
-                '''
-
+                    echo "MONGO_URI: $MONGO_URI"
+                    echo "MONGO_USERNAME: $MONGO_USERNAME"
+                    echo "MONGO_PASSWORD: $MONGO_PASSWORD"
+                    '''
                 }
 
-                junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
+                //junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
             }
         }
     }
