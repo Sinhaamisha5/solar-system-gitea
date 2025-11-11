@@ -55,10 +55,17 @@ pipeline {
         }
         */
 
-        stage('Unit Test') {
+        stage('Unit Testing') {
             steps {
-                echo 'Running unit tests...'
-                sh 'npm test'
+                withCredentials([usernamePassword(
+                    credentialsId: 'mongo-db-credentials', 
+                    passwordVariable: 'MONGO_PASSWORD', 
+                    usernameVariable: 'MONGO_USERNAME'
+                )]) {
+                    sh 'npm test'
+                }
+                
+                junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
             }
         }
     }
