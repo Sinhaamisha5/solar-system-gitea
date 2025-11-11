@@ -6,6 +6,15 @@ pipeline {
     }
 
     stages {
+
+        stages {
+        stage('Install Dependencies') {
+            steps {
+                echo '📦 Installing dependencies...'
+                sh 'npm install'
+            }
+        }
+        
         stage('MongoDB Connectivity Test') {
             steps {
                 withCredentials([usernamePassword(
