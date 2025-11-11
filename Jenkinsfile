@@ -5,6 +5,10 @@ pipeline {
         nodejs 'node-js24'   // Make sure this matches the NodeJS tool name configured in Jenkins Global Tools
     }
 
+    environment {
+        MONGO_URI = "mongodb+srv://supercluster.d83jj.mongodb.net/superData"
+    }
+
     stages {
 
         stage('Installing dependencies') {
@@ -64,7 +68,7 @@ pipeline {
                 )]) {
                     sh 'npm test'
                 }
-                
+
                 junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
             }
         }
