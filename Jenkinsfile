@@ -66,6 +66,7 @@ pipeline {
                     echo "MONGO_URI: $MONGO_URI"
                     echo "MONGO_USERNAME: $MONGO_USERNAME"
                     echo "MONGO_PASSWORD: $MONGO_PASSWORD"
+                    npm test
                     '''
                 }
 
