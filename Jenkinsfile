@@ -5,13 +5,10 @@ pipeline {
         nodejs 'node-js24'
             }       
     stages {
-        stage('VM Node Version') {
+        stage('Installing dependencies') {
             steps {
-                echo 'Checking Node and NPM versions...'
-                sh '''
-                npm --version
-                node --version
-                '''
+                echo 'Installing dependencies...'
+                sh 'npm install --no-audit'
             }
         }
     }
