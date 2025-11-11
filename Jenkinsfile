@@ -73,5 +73,17 @@ pipeline {
                 //junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
             }
         }
+
+        stage('Code Coverage') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'mongo-db-credentials', passwordVariable: 'MONGO_PASSWORD', usernameVariable: 'MONGO_USERNAME')]) {
+                sh '''
+                    npm run coverage
+                    '''
+                }
+
+                //junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
+            }
+        }
     }
 }
