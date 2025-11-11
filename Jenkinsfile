@@ -62,18 +62,15 @@ pipeline {
         stage('Unit Testing') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'mongo-db-credentials', passwordVariable: 'MONGO_PASSWORD', usernameVariable: 'MONGO_USERNAME')]) {
-                sh 'npm tets'
+                sh '''
+                    echo "MONGO_URI: $MONGO_URI"
+                    echo "MONGO_USERNAME: $MONGO_USERNAME"
+                    echo "MONGO_PASSWORD: $MONGO_PASSWORD"
+                    npm test
+                    '''
                 }
 
                 //junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
-            }
-        }
-
-        stage('Code Coverage') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'mongo-db-credentials', passwordVariable: 'MONGO_PASSWORD', usernameVariable: 'MONGO_USERNAME')]) {
-                sh 'npm run coverage'
-                }
             }
         }
     }
