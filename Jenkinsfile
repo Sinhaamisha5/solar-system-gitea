@@ -18,7 +18,7 @@ pipeline {
                     steps {
                         sh '''
                         
-                            npm audit fix
+                            npm audit fix --force
                             echo $?
                         '''
                     }
