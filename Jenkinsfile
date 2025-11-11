@@ -16,7 +16,7 @@ pipeline {
                     sh '''
                         echo "🔍 Testing MongoDB connection..."
                         export MONGO_URI="mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@supercluster.d83jj.mongodb.net/superData?retryWrites=true&w=majority"
-                        node mongo-test.js
+                        node app-test.js
                     '''
                 }
             }
