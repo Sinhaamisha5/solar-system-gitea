@@ -4,6 +4,7 @@ pipeline {
     tools   {
         nodejs 'node-js24'
             }       
+    
     stages {
         stage('Installing dependencies') {
             steps {
@@ -34,6 +35,8 @@ pipeline {
 
             }
  
+        }
     }
+
 }
 
